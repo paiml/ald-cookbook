@@ -1,5 +1,5 @@
 //! Federated learning data utilities.
-//! 
+//!
 //! Provides dataset splitting strategies for federated learning simulation:
 //! - IID (Independent and Identically Distributed)
 //! - Non-IID (using Dirichlet distribution)

@@ -1,7 +1,7 @@
 //! ALD (Alimentar Dataset) format implementation.
-//! 
+//!
 //! The ALD format provides secure, verifiable dataset distribution:
-//! 
+//!
 //! ```text
 //! ┌─────────────────────────────────────────┐
 //! │ Header (32 bytes, fixed)                │
@@ -25,7 +25,8 @@
     clippy::needless_pass_by_value
 )]
 
-use crate::error::{Error, Result};use arrow::array::RecordBatch;
+use crate::error::{Error, Result};
+use arrow::array::RecordBatch;
 use arrow::datatypes::SchemaRef;
 use arrow::ipc::reader::StreamReader;
 use arrow::ipc::writer::StreamWriter;

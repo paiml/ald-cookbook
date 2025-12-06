@@ -8,7 +8,8 @@
 
 #![allow(clippy::cast_precision_loss)]
 
-use crate::error::{Error, Result};use arrow::array::{Array, Float64Array, Int64Array, RecordBatch, StringArray};
+use crate::error::{Error, Result};
+use arrow::array::{Array, Float64Array, Int64Array, RecordBatch, StringArray};
 use arrow::datatypes::{DataType, Schema};
 use std::collections::{HashMap, HashSet};
 

@@ -1,11 +1,12 @@
 //! Data transformation utilities.
-//! 
+//!
 //! Provides filter, map, shuffle, sample, and normalize operations
 //! following the IIUR principles with deterministic behavior.
 
 #![allow(clippy::cast_precision_loss)]
 
-use crate::error::{Error, Result};use arrow::array::{
+use crate::error::{Error, Result};
+use arrow::array::{
     Array, ArrayRef, BooleanArray, Float64Array, Int64Array, RecordBatch, UInt64Array,
 };
 use arrow::compute::{filter_record_batch, take};
