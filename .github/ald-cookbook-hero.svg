@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="50%" style="stop-color:#161b22"/>
+      <stop offset="100%" style="stop-color:#0d1117"/>
+    </linearGradient>
+    <linearGradient id="createGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="transformGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#2563eb"/>
+    </linearGradient>
+    <linearGradient id="driftGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#ea580c"/>
+    </linearGradient>
+    <linearGradient id="securityGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="fedGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="700" fill="url(#bgGrad)"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.03">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#fff" stroke-width="1"/>
+    </pattern>
+    <rect width="1200" height="700" fill="url(#grid)"/>
+  </g>
+
+  <!-- Main Title -->
+  <text x="600" y="80" text-anchor="middle" fill="#10b981" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="bold" filter="url(#glow)">ALD COOKBOOK</text>
+  <text x="600" y="115" text-anchor="middle" fill="#9ca3af" font-family="system-ui, -apple-system, sans-serif" font-size="18">Idiomatic Rust Patterns for Dataset Distribution</text>
+
+  <!-- Recipe Cards - Row 1 -->
+
+  <!-- Create Dataset -->
+  <g transform="translate(80, 160)">
+    <rect width="200" height="120" rx="12" fill="#21262d" stroke="#10b981" stroke-width="2"/>
+    <rect width="200" height="35" rx="12" fill="url(#createGrad)"/>
+    <rect x="0" y="23" width="200" height="12" fill="url(#createGrad)"/>
+    <text x="100" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="13" font-weight="bold">CREATE DATASET</text>
+    <text x="15" y="60" fill="#9ca3af" font-family="monospace" font-size="10">Arrow RecordBatch</text>
+    <text x="15" y="78" fill="#6ee7b7" font-family="monospace" font-size="10">+ Tabular, Timeseries</text>
+    <text x="15" y="96" fill="#6ee7b7" font-family="monospace" font-size="10">+ Text, Image formats</text>
+  </g>
+
+  <!-- Load Dataset -->
+  <g transform="translate(300, 160)">
+    <rect width="200" height="120" rx="12" fill="#21262d" stroke="#10b981" stroke-width="2"/>
+    <rect width="200" height="35" rx="12" fill="url(#createGrad)"/>
+    <rect x="0" y="23" width="200" height="12" fill="url(#createGrad)"/>
+    <text x="100" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="13" font-weight="bold">LOAD &amp; STREAM</text>
+    <text x="15" y="60" fill="#9ca3af" font-family="monospace" font-size="10">Zero-copy loading</text>
+    <text x="15" y="78" fill="#6ee7b7" font-family="monospace" font-size="10">+ Metadata-only reads</text>
+    <text x="15" y="96" fill="#6ee7b7" font-family="monospace" font-size="10">+ Chunked streaming</text>
+  </g>
+
+  <!-- Convert Format -->
+  <g transform="translate(520, 160)">
+    <rect width="200" height="120" rx="12" fill="#21262d" stroke="#3b82f6" stroke-width="2"/>
+    <rect width="200" height="35" rx="12" fill="url(#transformGrad)"/>
+    <rect x="0" y="23" width="200" height="12" fill="url(#transformGrad)"/>
+    <text x="100" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="13" font-weight="bold">CONVERT FORMAT</text>
+    <text x="15" y="60" fill="#9ca3af" font-family="monospace" font-size="10">.parquet / .csv</text>
+    <text x="15" y="78" fill="#93c5fd" font-family="monospace" font-size="10">+ Arrow IPC native</text>
+    <text x="15" y="96" fill="#93c5fd" font-family="monospace" font-size="10">+ zstd compression</text>
+  </g>
+
+  <!-- Transform Data -->
+  <g transform="translate(740, 160)">
+    <rect width="200" height="120" rx="12" fill="#21262d" stroke="#3b82f6" stroke-width="2"/>
+    <rect width="200" height="35" rx="12" fill="url(#transformGrad)"/>
+    <rect x="0" y="23" width="200" height="12" fill="url(#transformGrad)"/>
+    <text x="100" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="13" font-weight="bold">TRANSFORM</text>
+    <text x="15" y="60" fill="#9ca3af" font-family="monospace" font-size="10">Filter, Shuffle, Sample</text>
+    <text x="15" y="78" fill="#93c5fd" font-family="monospace" font-size="10">+ Deterministic RNG</text>
+    <text x="15" y="96" fill="#93c5fd" font-family="monospace" font-size="10">+ Reproducible ops</text>
+  </g>
+
+  <!-- Quality Check -->
+  <g transform="translate(960, 160)">
+    <rect width="200" height="120" rx="12" fill="#21262d" stroke="#f97316" stroke-width="2"/>
+    <rect width="200" height="35" rx="12" fill="url(#driftGrad)"/>
+    <rect x="0" y="23" width="200" height="12" fill="url(#driftGrad)"/>
+    <text x="100" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="13" font-weight="bold">DATA QUALITY</text>
+    <text x="15" y="60" fill="#9ca3af" font-family="monospace" font-size="10">Null detection</text>
+    <text x="15" y="78" fill="#fdba74" font-family="monospace" font-size="10">+ Schema validation</text>
+    <text x="15" y="96" fill="#fdba74" font-family="monospace" font-size="10">+ Outlier detection</text>
+  </g>
+
+  <!-- Recipe Cards - Row 2 -->
+
+  <!-- Drift Detection -->
+  <g transform="translate(190, 310)">
+    <rect width="200" height="120" rx="12" fill="#21262d" stroke="#f97316" stroke-width="2"/>
+    <rect width="200" height="35" rx="12" fill="url(#driftGrad)"/>
+    <rect x="0" y="23" width="200" height="12" fill="url(#driftGrad)"/>
+    <text x="100" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="13" font-weight="bold">DRIFT DETECTION</text>
+    <text x="15" y="60" fill="#9ca3af" font-family="monospace" font-size="10">KS Test / Chi-Square</text>
+    <text x="15" y="78" fill="#fdba74" font-family="monospace" font-size="10">+ PSI calculation</text>
+    <text x="15" y="96" fill="#fdba74" font-family="monospace" font-size="10">+ Distribution shift</text>
+  </g>
+
+  <!-- Federated Learning -->
+  <g transform="translate(410, 310)">
+    <rect width="200" height="120" rx="12" fill="#21262d" stroke="#ef4444" stroke-width="2"/>
+    <rect width="200" height="35" rx="12" fill="url(#fedGrad)"/>
+    <rect x="0" y="23" width="200" height="12" fill="url(#fedGrad)"/>
+    <text x="100" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="13" font-weight="bold">FEDERATED</text>
+    <text x="15" y="60" fill="#9ca3af" font-family="monospace" font-size="10">IID / Non-IID splits</text>
+    <text x="15" y="78" fill="#fca5a5" font-family="monospace" font-size="10">+ Dirichlet partition</text>
+    <text x="15" y="96" fill="#fca5a5" font-family="monospace" font-size="10">+ Client simulation</text>
+  </g>
+
+  <!-- Security -->
+  <g transform="translate(630, 310)">
+    <rect width="200" height="120" rx="12" fill="#21262d" stroke="#8b5cf6" stroke-width="2"/>
+    <rect width="200" height="35" rx="12" fill="url(#securityGrad)"/>
+    <rect x="0" y="23" width="200" height="12" fill="url(#securityGrad)"/>
+    <text x="100" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="13" font-weight="bold">SECURITY</text>
+    <text x="15" y="60" fill="#9ca3af" font-family="monospace" font-size="10">AES-256-GCM</text>
+    <text x="15" y="78" fill="#c4b5fd" font-family="monospace" font-size="10">+ Ed25519 signing</text>
+    <text x="15" y="96" fill="#c4b5fd" font-family="monospace" font-size="10">+ Argon2id KDF</text>
+  </g>
+
+  <!-- Registry -->
+  <g transform="translate(850, 310)">
+    <rect width="200" height="120" rx="12" fill="#21262d" stroke="#8b5cf6" stroke-width="2"/>
+    <rect width="200" height="35" rx="12" fill="url(#securityGrad)"/>
+    <rect x="0" y="23" width="200" height="12" fill="url(#securityGrad)"/>
+    <text x="100" y="24" text-anchor="middle" fill="#fff" font-family="monospace" font-size="13" font-weight="bold">REGISTRY</text>
+    <text x="15" y="60" fill="#9ca3af" font-family="monospace" font-size="10">Publish &amp; Pull</text>
+    <text x="15" y="78" fill="#c4b5fd" font-family="monospace" font-size="10">+ Semantic versioning</text>
+    <text x="15" y="96" fill="#c4b5fd" font-family="monospace" font-size="10">+ S3 backend ready</text>
+  </g>
+
+  <!-- ALD Format Structure -->
+  <g transform="translate(100, 470)">
+    <rect width="1000" height="100" rx="12" fill="#21262d" stroke="#374151" stroke-width="1"/>
+    <text x="500" y="30" text-anchor="middle" fill="#9ca3af" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold">ALD FORMAT v1.2</text>
+
+    <!-- Header -->
+    <g transform="translate(50, 45)">
+      <rect width="120" height="40" rx="8" fill="#1f2937" stroke="#10b981" stroke-width="2"/>
+      <text x="60" y="26" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="11" font-weight="bold">Header 34B</text>
+    </g>
+    <text x="185" y="72" fill="#6b7280" font-family="system-ui" font-size="20">+</text>
+
+    <!-- Metadata -->
+    <g transform="translate(210, 45)">
+      <rect width="140" height="40" rx="8" fill="#1f2937" stroke="#3b82f6" stroke-width="2"/>
+      <text x="70" y="26" text-anchor="middle" fill="#3b82f6" font-family="monospace" font-size="11" font-weight="bold">MessagePack</text>
+    </g>
+    <text x="365" y="72" fill="#6b7280" font-family="system-ui" font-size="20">+</text>
+
+    <!-- Schema -->
+    <g transform="translate(390, 45)">
+      <rect width="140" height="40" rx="8" fill="#1f2937" stroke="#f97316" stroke-width="2"/>
+      <text x="70" y="26" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="11" font-weight="bold">Arrow Schema</text>
+    </g>
+    <text x="545" y="72" fill="#6b7280" font-family="system-ui" font-size="20">+</text>
+
+    <!-- Payload -->
+    <g transform="translate(570, 45)">
+      <rect width="180" height="40" rx="8" fill="#1f2937" stroke="#ef4444" stroke-width="2"/>
+      <text x="90" y="26" text-anchor="middle" fill="#ef4444" font-family="monospace" font-size="11" font-weight="bold">Arrow IPC + zstd</text>
+    </g>
+    <text x="765" y="72" fill="#6b7280" font-family="system-ui" font-size="20">+</text>
+
+    <!-- Checksum -->
+    <g transform="translate(790, 45)">
+      <rect width="160" height="40" rx="8" fill="#1f2937" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="80" y="26" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="11" font-weight="bold">CRC32 Checksum</text>
+    </g>
+  </g>
+
+  <!-- CLI Tools -->
+  <g transform="translate(100, 590)">
+    <rect width="480" height="70" rx="12" fill="#0d1117" stroke="#374151" stroke-width="1"/>
+    <text x="20" y="25" fill="#6b7280" font-family="monospace" font-size="11">$</text>
+    <text x="35" y="25" fill="#10b981" font-family="monospace" font-size="11">cargo run --example</text>
+    <text x="200" y="25" fill="#9ca3af" font-family="monospace" font-size="11">create_ald_from_arrow</text>
+    <text x="20" y="50" fill="#6b7280" font-family="monospace" font-size="11">$</text>
+    <text x="35" y="50" fill="#10b981" font-family="monospace" font-size="11">cargo run --example</text>
+    <text x="200" y="50" fill="#9ca3af" font-family="monospace" font-size="11">drift_ks_test</text>
+  </g>
+
+  <!-- Stats -->
+  <g transform="translate(620, 590)">
+    <rect width="480" height="70" rx="12" fill="#21262d" stroke="#374151" stroke-width="1"/>
+    <text x="80" y="30" text-anchor="middle" fill="#9ca3af" font-family="monospace" font-size="11">IIUR</text>
+    <text x="80" y="50" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="14" font-weight="bold">Compliant</text>
+
+    <text x="200" y="30" text-anchor="middle" fill="#9ca3af" font-family="monospace" font-size="11">Pure Rust</text>
+    <text x="200" y="50" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="16" font-weight="bold">100%</text>
+
+    <text x="320" y="30" text-anchor="middle" fill="#9ca3af" font-family="monospace" font-size="11">Recipes</text>
+    <text x="320" y="50" text-anchor="middle" fill="#3b82f6" font-family="monospace" font-size="16" font-weight="bold">22</text>
+
+    <text x="440" y="30" text-anchor="middle" fill="#9ca3af" font-family="monospace" font-size="11">Encryption</text>
+    <text x="440" y="50" text-anchor="middle" fill="#8b5cf6" font-family="monospace" font-size="14" font-weight="bold">AES-256</text>
+  </g>
+</svg>

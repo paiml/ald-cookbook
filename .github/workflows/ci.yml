@@ -1,0 +1,165 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-action@stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: Run tests
+        run: cargo test --verbose
+
+      - name: Run tests with all features
+        run: cargo test --all-features --verbose
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-action@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Check formatting
+        run: cargo fmt --check
+
+      - name: Clippy
+        run: cargo clippy -- -D warnings
+
+      - name: Clippy (examples)
+        run: cargo clippy --examples -- -D warnings
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-action@stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: Build
+        run: cargo build --verbose
+
+      - name: Build release
+        run: cargo build --release --verbose
+
+      - name: Build with all features
+        run: cargo build --all-features --verbose
+
+      - name: Build examples
+        run: cargo build --examples --verbose
+
+  examples:
+    name: Run Examples
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-action@stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: Run create_ald_from_arrow
+        run: cargo run --example create_ald_from_arrow
+
+      - name: Run load_ald_basic
+        run: cargo run --example load_ald_basic
+
+      - name: Run convert_csv_to_ald
+        run: cargo run --example convert_csv_to_ald
+
+      - name: Run transform_filter
+        run: cargo run --example transform_filter
+
+      - name: Run drift_ks_test
+        run: cargo run --example drift_ks_test
+
+      - name: Run federated_iid_split
+        run: cargo run --example federated_iid_split
+
+      - name: Run registry_publish
+        run: cargo run --example registry_publish
+
+      - name: Run sign_ald_ed25519 (with signing feature)
+        run: cargo run --example sign_ald_ed25519 --features signing
+
+  idempotency:
+    name: Idempotency Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-action@stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: Check idempotency
+        run: |
+          cargo run --example create_ald_from_arrow 2>/dev/null | grep -E "^(Recipe|Rows|File)" > /tmp/out1.txt
+          cargo run --example create_ald_from_arrow 2>/dev/null | grep -E "^(Recipe|Rows|File)" > /tmp/out2.txt
+          diff /tmp/out1.txt /tmp/out2.txt
+          echo "Idempotency check passed"
